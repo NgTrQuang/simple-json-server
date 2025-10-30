@@ -15,24 +15,24 @@ exports.handleUpload = (req, res) => {
             person_name: body.match?.person_name,
         });
         // 2️⃣ Ghi log chi tiết vào file
-        const logData = `[${new Date().toISOString()}] UPLOAD: ${JSON.stringify(body)}\n`;
-        fs.appendFileSync(logFile, logData);
+        // const logData = `[${new Date().toISOString()}] UPLOAD: ${JSON.stringify(body)}\n`;
+        // fs.appendFileSync(logFile, logData);
 
-        // 3️⃣ Nếu có ảnh base64 thì lưu lại (panoramic hoặc close-up)
-        const imageDir = path.join(__dirname, '../logs/');
-        if (!fs.existsSync(imageDir)) fs.mkdirSync(imageDir, { recursive: true });
+        // // 3️⃣ Nếu có ảnh base64 thì lưu lại (panoramic hoặc close-up)
+        // const imageDir = path.join(__dirname, '../logs/');
+        // if (!fs.existsSync(imageDir)) fs.mkdirSync(imageDir, { recursive: true });
 
-        if (body.overall_pic_flag && body.overall_pic?.data) {
-            const buffer = Buffer.from(body.overall_pic.data, 'base64');
-            const filename = `overall_${Date.now()}.jpg`;
-            fs.writeFileSync(path.join(imageDir, filename), buffer);
-        }
+        // if (body.overall_pic_flag && body.overall_pic?.data) {
+        //     const buffer = Buffer.from(body.overall_pic.data, 'base64');
+        //     const filename = `overall_${Date.now()}.jpg`;
+        //     fs.writeFileSync(path.join(imageDir, filename), buffer);
+        // }
 
-        if (body.closeup_pic_flag && body.closeup_pic?.data) {
-            const buffer = Buffer.from(body.closeup_pic.data, 'base64');
-            const filename = `closeup_${Date.now()}.jpg`;
-            fs.writeFileSync(path.join(imageDir, filename), buffer);
-        }
+        // if (body.closeup_pic_flag && body.closeup_pic?.data) {
+        //     const buffer = Buffer.from(body.closeup_pic.data, 'base64');
+        //     const filename = `closeup_${Date.now()}.jpg`;
+        //     fs.writeFileSync(path.join(imageDir, filename), buffer);
+        // }
 
         // 4️⃣ Chuẩn bị phản hồi "ACK" theo tài liệu
         const ackResponse = {
