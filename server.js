@@ -8,7 +8,7 @@ const heartController = require('./controllers/heartController');
 const uploadController = require('./controllers/uploadController');
 
 const app = express();
-const PORT = 8000; // bạn có thể đổi port nếu cần
+const PORT = process.env.PORT || 8000; // bạn có thể đổi port nếu cần
 
 // Middleware
 app.use(cors());
