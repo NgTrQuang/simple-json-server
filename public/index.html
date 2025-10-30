@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📸 Device Snapshot Logs</title>
+  <style>
+    body {
+      font-family: Consolas, monospace;
+      background: #121212;
+      color: #00ff99;
+      padding: 20px;
+    }
+    h1 { color: #00ffcc; }
+    pre {
+      background: #1e1e1e;
+      padding: 10px;
+      border-radius: 6px;
+      max-height: 80vh;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    button {
+      background: #00ffcc;
+      border: none;
+      color: black;
+      font-weight: bold;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>📜 Device Snapshot Logs</h1>
+  <button onclick="loadLogs()">🔄 Tải lại</button>
+  <pre id="logContent">Đang tải...</pre>
+
+  <script>
+    async function loadLogs() {
+      try {
+        const res = await fetch('/api/logs');
+        const data = await res.json();
+        const logs = data.data || [];
+
+        document.getElementById('logContent').textContent =
+        JSON.stringify(logs, null, 2);
+      } catch (err) {
+        document.getElementById('logContent').textContent = '❌ Lỗi khi tải log.';
+      }
+    }
+
+    // Tự động tải mỗi 5 giây
+    loadLogs();
+    setInterval(loadLogs, 5000);
+  </script>
+</body>
+</html>
