@@ -8,18 +8,10 @@ let pendingCommand = null;
 
 exports.handleHeartbeat = (req, res) => {
   const body = req.body;
-  const logData = `[${new Date().toISOString()}] HEARTBEAT: ${JSON.stringify(body)}\n`;
-  fs.appendFileSync(logFile, logData);
-
-  // Nếu thiết bị vừa gửi kết quả của lệnh (ví dụ cmd = add_face_result)
-  if (body.cmd && body.cmd.endsWith('_result')) {
-    console.log('📩 Nhận kết quả từ thiết bị:', body);
-    pendingCommand = null;
-    return res.json({ code: 0, msg: 'Result received' });
-  }
-
-  // Nếu là heartbeat thông thường
-  console.log('💓 Nhận heartbeat từ thiết bị:', body.device_info?.device_no || 'unknown');
+  console.log("========================================");
+  console.log("📸 [Heart beat once 15 second]", new Date().toISOString());
+  console.log(JSON.stringify(body, null, 2));
+  console.log("========================================\n");
 
   // Giả lập: khi nhận heartbeat đầu tiên, gửi lại 1 lệnh cho thiết bị lấy dữ liệu người dùng (cố định)
   if (!pendingCommand) {
