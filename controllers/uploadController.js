@@ -7,13 +7,14 @@ exports.handleUpload = (req, res) => {
    try {     
     const body = req.body;
         // Log ra console cho dễ kiểm tra
-        console.log("📸 Received snapshot:", {
-            cmd: body.cmd,
-            sequence_no: body.sequence_no,
-            cap_time: body.cap_time,
-            device_no: body.device_no,
-            person_name: body.match?.person_name,
-        });
+        // console.log("📸 Received snapshot:", {
+        //     cmd: body.cmd,
+        //     sequence_no: body.sequence_no,
+        //     cap_time: body.cap_time,
+        //     device_no: body.device_no,
+        //     person_name: body.match?.person_name,
+        // });
+        console.log("📸 Received snapshot full data:\n", JSON.stringify(body, null, 2));
         // 2️⃣ Ghi log chi tiết vào file
         // const logData = `[${new Date().toISOString()}] UPLOAD: ${JSON.stringify(body)}\n`;
         // fs.appendFileSync(logFile, logData);
