@@ -19,7 +19,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route
-app.post('/camera/upload', heartController.handleHeartbeat);
+app.post('/upload/heart-control', heartController.handleHeartbeat);
 app.post('/upload/record', uploadController.handleUpload);
 
 // 🆕 API: đọc file log và trả về JSON
