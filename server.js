@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const env = require('dotenv');
+
+env.config();
 
 const heartController = require('./controllers/heartController');
 const uploadController = require('./controllers/uploadController');
@@ -17,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route
 app.post('/camera/upload', heartController.handleHeartbeat);
-app.post('/camera/heart', uploadController.handleUpload);
+app.post('/upload/record', uploadController.handleUpload);
 
 // 🆕 API: đọc file log và trả về JSON
 app.get('/api/logs', (req, res) => {
@@ -53,6 +56,6 @@ app.get('/', (req, res) => {
 });
 
 // Run server
-app.listen(PORT, () => {
-  console.log(`✅ Camera server is running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ Camera server is running on http://0.0.0.0:${PORT}`);
 });
