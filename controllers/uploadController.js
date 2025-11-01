@@ -46,7 +46,7 @@ exports.handleUpload = (req, res) => {
             sequence_no: body?.sequence_no,
             cap_time: body?.cap_time,
             tts: {
-                text: "bin"
+                text: body?.match?.person_name || ""
             },
             gateway_ctrl: {
                 device_type: "gpio",
@@ -54,7 +54,7 @@ exports.handleUpload = (req, res) => {
                 ctrl_mode: "force",
             },
             
-            text_display: [
+            text_displays: [
                 {
                     position: { 
                         x: 0, 
@@ -64,7 +64,7 @@ exports.handleUpload = (req, res) => {
                     font_size: 120,
                     font_spacing: 1,
                     font_color: "0xff00ff00",
-                    text: "bin"
+                    text: body?.match?.person_name || ""
                 },
                 {
                     position: { 
@@ -75,14 +75,14 @@ exports.handleUpload = (req, res) => {
                     font_size: 50,
                     font_spacing: 1,
                     font_color: "0xffff0000",
-                    text: "bin"
+                    text: body?.match?.person_name || ""
                 }
             ]
         };
 
-        res.json(ackResponse);
+        return res.status(200).json(ackResponse);
     } catch (err) {
         console.error("❌ Error handling snapshot:", err);
-        res.status(500).json({ code: -1, msg: err.message });
+        return res.status(500).json({ code: -1, msg: err.message });
     }
 };
