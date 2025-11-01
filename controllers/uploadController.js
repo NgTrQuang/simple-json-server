@@ -45,22 +45,39 @@ exports.handleUpload = (req, res) => {
             code: 0,
             sequence_no: body?.sequence_no,
             cap_time: body?.cap_time,
+            tts: {
+                text: `Welcome ${body.match?.person_name || "Guest"}`
+            },
             gateway_ctrl: {
                 device_type: "gpio",
                 device_no: 1,
                 ctrl_mode: "force",
             },
-            tts: {
-                text: `Welcome ${body.match?.person_name || "Guest"}`
-            },
-            text_display: {
-                position: { x: 0, y: 500 },
-                alive_time: 1500,
-                font_size: 60,
-                font_spacing: 1,
-                font_color: "0xffffffff",
-                text: `Hello ${body.match?.person_name || ""}`
-            }
+            
+            text_display: [
+                {
+                    position: { 
+                        x: 0, 
+                        y: 450 
+                    },
+                    alive_time: 5000,
+                    font_size: 120,
+                    font_spacing: 1,
+                    font_color: "0xff00ff00",
+                    text: `Hello ${body.match?.person_name || ""}`
+                },
+                {
+                    position: { 
+                        x: 0, 
+                        y: 300 
+                    },
+                    alive_time: 5000,
+                    font_size: 50,
+                    font_spacing: 1,
+                    font_color: "0xffff0000",
+                    text: `Hello ${body.match?.person_name || "Welcome to use AI camera"}`
+                }
+            ]
         };
 
         res.json(ackResponse);
