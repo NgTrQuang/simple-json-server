@@ -46,7 +46,7 @@ exports.handleUpload = (req, res) => {
             sequence_no: body?.sequence_no,
             cap_time: body?.cap_time,
             tts: {
-                text: `Welcome ${body.match?.person_name || "Guest"}`
+                text: "bin"
             },
             gateway_ctrl: {
                 device_type: "gpio",
@@ -64,7 +64,7 @@ exports.handleUpload = (req, res) => {
                     font_size: 120,
                     font_spacing: 1,
                     font_color: "0xff00ff00",
-                    text: `Hello ${body.match?.person_name || ""}`
+                    text: "bin"
                 },
                 {
                     position: { 
@@ -75,7 +75,7 @@ exports.handleUpload = (req, res) => {
                     font_size: 50,
                     font_spacing: 1,
                     font_color: "0xffff0000",
-                    text: `Hello ${body.match?.person_name || "Welcome to use AI camera"}`
+                    text: "bin"
                 }
             ]
         };
