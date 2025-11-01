@@ -41,15 +41,14 @@ exports.handleUpload = (req, res) => {
         // 4️⃣ Chuẩn bị phản hồi "ACK" theo tài liệu
         const ackResponse = {
             reply: "ACK",
-            cmd: body.cmd || "face",
+            cmd: "face",
             code: 0,
-            sequence_no: body.sequence_no,
-            cap_time: body.cap_time,
+            sequence_no: body?.sequence_no,
+            cap_time: body?.cap_time,
             gateway_ctrl: {
                 device_type: "gpio",
                 device_no: 1,
                 ctrl_mode: "force",
-                person_id: body.match?.person_id || "unknown"
             },
             tts: {
                 text: `Welcome ${body.match?.person_name || "Guest"}`

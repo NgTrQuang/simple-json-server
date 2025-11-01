@@ -1,0 +1,40 @@
+{
+    "reply": "ACK",
+    "cmd": "face",
+    "code": 0,
+    "sequence_no": 182,
+    "cap_time": "2025-11-01 00:50:18",
+    "tts": {
+        "text": "Hello bin"
+    },
+    "gateway_ctrl": {
+        "device_type": "gpio",
+        "device_no": 1,
+        "ctrl_mode": "force"
+    },
+    "text_display": 
+    [
+        {
+            "position": {
+                "x": 0,
+                "y": 450
+            },
+            "alive_time": 5000,
+            "font_size": 120,
+            "font_spacing": 1,
+            "font_color": "0xff00ff00",
+            "text": "Hello bin"
+        },
+        {
+            "position": {
+                "x": 0,
+                "y": 300
+            },
+            "alive_time": 5000,
+            "font_size": 50,
+            "font_spacing": 1,
+            "font_color": "0xffff0000",
+            "text": "Welcome to use AI camera"
+        }
+    ]
+}
